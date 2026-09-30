@@ -1,14 +1,15 @@
 class Solution:
     def majorityElement(self, nums: list[int]) -> int:
-        
+        nums.sort()
         target = len(nums)//2
-        dict={}
-        for i in range(len(nums)):
-            if nums[i] in dict:
-                dict[nums[i]]+=1
+        freq=1
+        ans=nums[0]
+        for i in range(1,len(nums)):
+            if nums[i]==nums[i-1]:
+                freq+=1
             else:
-                dict[nums[i]]=1
-        for n in dict:
-            if dict.get(n)>target:
-                return n
-        return
+                freq=1
+                ans=nums[i]
+            if freq>target:
+                return nums[i]
+        return ans
