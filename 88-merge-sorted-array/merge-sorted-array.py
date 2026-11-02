@@ -1,11 +1,22 @@
 class Solution:
     def merge(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
-        k=0
-        for i in range(m,m+n):
-            if k<n:
-                nums1[i]=nums2[k]
-                k+=1
+        l=m-1
+        r=n-1
+        idx=(m+n)-1
 
-        nums1.sort()
+        while l>=0 and r>=0:
+            if nums1[l]>=nums2[r]:
+                nums1[idx]=nums1[l]
+                idx-=1
+                l-=1
+            else:
+                nums1[idx]=nums2[r]
+                idx-=1
+                r-=1
+
+        while r>=0:
+            nums1[idx]=nums2[r]
+            r-=1
+            idx-=1
+                
         return nums1
-        
