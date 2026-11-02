@@ -1,12 +1,8 @@
 class Solution:
     def singleNumber(self, nums: list[int]) -> int:
-        dict = {}
-        for i in range(len(nums)):
-            if nums[i] not in dict:
-                dict[nums[i]] = 1
-            else:
-                dict[nums[i]]+=1
+        xorr=nums[0]
+        for i in range(1,len(nums)):
+            xorr = xorr^nums[i]
         
-        for x in dict:
-            if dict[x]==1:
-                return x
+        return xorr
+
